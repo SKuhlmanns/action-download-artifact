@@ -121,16 +121,17 @@ async function main() {
 
             fs.mkdirSync(dir, { recursive: true })
 
-            const adm = new AdmZip(Buffer.from(zip.data))
+            //const adm = new AdmZip(Buffer.from(zip.data))
 
-            adm.getEntries().forEach((entry) => {
-                const action = entry.isDirectory ? "creating" : "inflating"
-                const filepath = pathname.join(dir, entry.entryName)
+            //adm.getEntries().forEach((entry) => {
+            //    const action = entry.isDirectory ? "creating" : "inflating"
+            //    const filepath = pathname.join(dir, entry.entryName)
 
-                console.log(`  ${action}: ${filepath}`)
-            })
+            //    console.log(`  ${action}: ${filepath}`)
+            //})
 
-            adm.extractAllTo(dir, true)
+            //adm.extractAllTo(dir, true)
+            fs.writeFileSync(pathname.join(path, artifact.name), Buffer.from(zip.data))
         }
     } catch (error) {
         core.setFailed(error.message)
